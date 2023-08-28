@@ -56,13 +56,15 @@ public class SectionService {
         Section[] sections = getSections();
 
         for(int i = 0; i < sections.length; i++){
-            String name = sections[i].getInstructors().get(0);
-            if(bucket.containsKey(name)){
-                bucket.get(name).add(sections[i]);
-            }else{
-                ArrayList<Section> arrayList = new ArrayList<>();
-                arrayList.add(sections[i]);
-                bucket.put(name, arrayList);
+            if(sections[i].getInstructors().size() > 0){
+                String name = sections[i].getInstructors().get(0);
+                if(bucket.containsKey(name)){
+                    bucket.get(name).add(sections[i]);
+                }else{
+                    ArrayList<Section> arrayList = new ArrayList<>();
+                    arrayList.add(sections[i]);
+                    bucket.put(name, arrayList);
+                }
             }
         }
 
